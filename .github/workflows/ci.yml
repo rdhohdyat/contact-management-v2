@@ -9,10 +9,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: src
-
     steps:
       # 1. Ambil source code
       - name: Checkout code
@@ -26,8 +22,8 @@ jobs:
           extensions: mbstring, pdo, mysql, zip
 
       # 3. Copy env
-      - name: Copy .env
-        run: cp .env.example .env
+      - name: Copy env
+        run: cp src/.env.example src/.env
 
       # 4. Install dependency PHP
       - name: Install Composer dependencies
