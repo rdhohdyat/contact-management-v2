@@ -9,8 +9,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: src
+
     steps:
-      # 1. Ambil source code
+      # 1. Checkout
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -23,13 +27,13 @@ jobs:
 
       # 3. Copy env
       - name: Copy env
-        run: cp src/.env.example src/.env
+        run: cp .env.example .env
 
-      # 4. Install dependency PHP
+      # 4. Install Composer dependencies
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
 
-      # 5. Generate key Laravel
+      # 5. Generate key
       - name: Generate key
         run: php artisan key:generate
 
@@ -39,14 +43,14 @@ jobs:
         with:
           node-version: 20
 
-      # 7. Install NPM dependency
+      # 7. Install Node dependencies
       - name: Install Node dependencies
         run: npm install
 
-      # 8. Build frontend (Vite)
+      # 8. Build assets
       - name: Build assets
         run: npm run build
 
-      # 9. Run Laravel test
+      # 9. Run tests
       - name: Run tests
         run: php artisan test
