@@ -1,0 +1,52 @@
+name: Laravel CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Ambil source code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Setup PHP
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: mbstring, pdo, mysql, zip
+
+      # 3. Copy env
+      - name: Copy .env
+        run: cp .env.example .env
+
+      # 4. Install dependency PHP
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      # 5. Generate key Laravel
+      - name: Generate key
+        run: php artisan key:generate
+
+      # 6. Setup Node.js
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 7. Install NPM dependency
+      - name: Install Node dependencies
+        run: npm install
+
+      # 8. Build frontend (Vite)
+      - name: Build assets
+        run: npm run build
+
+      # 9. Run Laravel test
+      - name: Run tests
+        run: php artisan test

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Management - Edit Contact</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Iconify Icon Component -->
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Fredoka', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'custom': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 min-h-screen flex flex-col">
+    <!-- Header with right-aligned menu -->
+    <header class="bg-gradient shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="dashboard.html" class="flex items-center hover:opacity-90 transition-opacity duration-200">
+                <iconify-icon icon="solar:notebook-bookmark-bold-duotone" class="text-white text-2xl mr-3"></iconify-icon>
+                <div class="text-white font-bold text-xl tracking-wide">Contact Management</div>
+            </a>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li>
+                        <a href="profile.html" class="text-gray-100 hover:text-white flex items-center transition-colors duration-200">
+                            <iconify-icon icon="solar:user-circle-bold-duotone" class="mr-2 text-xl"></iconify-icon>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="text-gray-100 hover:text-white flex items-center transition-colors duration-200">
+                            <iconify-icon icon="solar:logout-3-bold-duotone" class="mr-2 text-xl"></iconify-icon>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <div class="flex items-center mb-6">
+            <a href="dashboard.html" class="text-blue-400 hover:text-blue-300 mr-4 flex items-center transition-colors duration-200">
+                <iconify-icon icon="solar:arrow-left-bold-duotone" class="mr-2 text-xl flex items-center"></iconify-icon> Back to Contacts
+            </a>
+            <h1 class="text-2xl font-bold text-white flex items-center tracking-wide">
+                <iconify-icon icon="solar:user-speak-bold-duotone" class="text-blue-400 text-2xl mr-3"></iconify-icon> Edit Contact
+            </h1>
+        </div>
+
+        <div class="bg-gray-900 bg-opacity-65 rounded-2xl border border-gray-700/50 backdrop-blur-md overflow-hidden max-w-2xl mx-auto animate-fade-in shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+            <div class="p-8">
+                <form>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                        <div>
+                            <label for="first_name" class="block text-gray-300 text-sm font-medium mb-2">First Name</label>
+                            <div class="relative flex items-center">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <iconify-icon icon="solar:tag-bold-duotone" class="text-gray-500 text-xl"></iconify-icon>
+                                </div>
+                                <input type="text" id="first_name" name="first_name" 
+                                    class="w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-700 text-white rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-400 transition-all duration-200" 
+                                    placeholder="Enter first name" value="John" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="last_name" class="block text-gray-300 text-sm font-medium mb-2">Last Name</label>
+                            <div class="relative flex items-center">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <iconify-icon icon="solar:tag-bold-duotone" class="text-gray-500 text-xl"></iconify-icon>
+                                </div>
+                                <input type="text" id="last_name" name="last_name" 
+                                    class="w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-700 text-white rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-400 transition-all duration-200" 
+                                    placeholder="Enter last name" value="Doe" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="email" class="block text-gray-300 text-sm font-medium mb-2">Email</label>
+                        <div class="relative flex items-center">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <iconify-icon icon="solar:letter-bold-duotone" class="text-gray-500 text-xl"></iconify-icon>
+                            </div>
+                            <input type="email" id="email" name="email" 
+                                class="w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-700 text-white rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-400 transition-all duration-200" 
+                                placeholder="Enter email address" value="john.doe@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="phone" class="block text-gray-300 text-sm font-medium mb-2">Phone</label>
+                        <div class="relative flex items-center">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <iconify-icon icon="solar:phone-calling-bold-duotone" class="text-gray-500 text-xl"></iconify-icon>
+                            </div>
+                            <input type="tel" id="phone" name="phone" 
+                                class="w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-700 text-white rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-400 transition-all duration-200" 
+                                placeholder="Enter phone number" value="+1 (555) 123-4567" required>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-4">
+                        <a href="dashboard.html" 
+                            class="px-5 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-xl focus:outline-none focus:ring-4 focus:ring-gray-500/20 transition-all duration-200 flex items-center shadow-md">
+                            <iconify-icon icon="solar:close-circle-bold-duotone" class="mr-2 text-xl"></iconify-icon> Cancel
+                        </a>
+                        <button type="submit" 
+                            class="px-5 py-3 bg-gradient text-white rounded-xl hover:opacity-95 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 font-medium shadow-lg shadow-blue-500/20 transform hover:-translate-y-0.5 flex items-center justify-center">
+                            <iconify-icon icon="solar:diskette-bold-duotone" class="mr-2 text-xl"></iconify-icon> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-10 mb-6 text-center text-gray-400 text-sm animate-fade-in">
+            <p>© 2025 Contact Management. All rights reserved.</p>
+        </div>
+    </main>
+</body>
+</html>
